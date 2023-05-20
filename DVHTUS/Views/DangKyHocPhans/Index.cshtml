@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DVHTUS.Models.DangKyHocPhan>
+
+@{
+    ViewData["Title"] = "Danh sách đăng ký học phần";
+}
+
+<style>
+    .wrapper {
+        box-shadow: 0 0 20px rgba(0, 0, 0, .12);
+        border-radius: 0.375rem;
+    }
+</style>
+
+<div class="wrapper p-5 mt-3">
+    <h1 class="text-center">Danh sách đăng ký học phần</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary mt-5">Create New</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayDangKy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SinhVien)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LopHP)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDangKy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SinhVien.HoTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LopHP.TenLopHP)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-success">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>
